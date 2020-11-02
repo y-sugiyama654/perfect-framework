@@ -1,0 +1,3 @@
+<php
+hello world
+phpinfo();
