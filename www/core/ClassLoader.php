@@ -5,7 +5,7 @@ class ClassLoader
     protected $dirs;
 
     /**
-     * オートローダーロウロク処理
+     * オートローダー登録処理
      */
     public function register()
     {
