@@ -161,7 +161,7 @@ abstract class Application
     }
 
     /**
-     *
+     * コントローラ名とアクション名を取得しrunAction()メソッドを呼び出す
      */
     public function run()
     {
@@ -179,6 +179,8 @@ abstract class Application
 
 
     /**
+     * アクションの実行
+     *
      * @param string $controller_name
      * @param string $action
      * @param array $params
@@ -197,6 +199,8 @@ abstract class Application
     }
 
     /**
+     * コントローラクラスが読み込まれていない場合に、クラスファイルの読み込みを行う
+     *
      * @param string $controller_class
      * @return bool|mixed
      */
