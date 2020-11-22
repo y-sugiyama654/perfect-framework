@@ -9,6 +9,7 @@ abstract class Controller
     protected $response;
     protected $session;
     protected $db_manager;
+    protected $auth_actions;
 
     /**
      * Controller constructor.
@@ -41,7 +42,25 @@ abstract class Controller
             $this->forward404();
         }
 
+        if ($this->needsAuthentication($action) && !$this->session->isAuthenticated()) {
+            throw new UnauthorizedActionException();
+        }
+
         return $this->$action_method($params);
+    }
+
+    /**
+     * ログインが必要かどうかの判定
+     *
+     * @param string $action
+     * @return bool true:ログイン必要 false:ログイン不要
+     */
+    protected function needsAuthentication(string $action)
+    {
+        if ($this->auth_actions === true || (is_array($this->auth_actions && in_array($action, $this->auth_actions)))) {
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -135,7 +154,7 @@ abstract class Controller
 
             return true;
         }
-        
+
         return false;
     }
 }
